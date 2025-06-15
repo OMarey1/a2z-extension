@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>A2Z Backup</title>
+    <style>
+        body {
+            font: 14px system-ui;
+            margin: 0;
+            min-width: 300px;
+            padding: 12px
+        }
+
+        h3 {
+            margin: 0 0 8px;
+            font-size: 1.1rem
+        }
+
+        #courses {
+            max-height: 240px;
+            overflow: auto;
+            border: 1px solid #ddd;
+            padding: 6px
+        }
+
+        label {
+            display: block;
+            margin: 2px 0;
+            cursor: pointer
+        }
+
+        button {
+            margin-top: 8px;
+            width: 100%;
+            padding: 8px;
+            border: 0;
+            border-radius: 4px;
+            background: #0b5fff;
+            color: #fff;
+            cursor: pointer
+        }
+
+        #status {
+            margin-top: 6px;
+            font-size: .85rem
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Select courses to back up</h3>
+    <div id="courses">Fetching…</div>
+    <button id="backup" disabled>Backup Selected</button>
+    <p id="status"></p>
+    <script src="popup.js"></script>
+</body>
+
+</html>
