@@ -4,7 +4,25 @@ const backupBtn = document.getElementById('backup');
 const statusEl = document.getElementById('status');
 const selectAllBtn = document.getElementById('selectAll');
 const selectNoneBtn = document.getElementById('selectNone');
+const themeToggle = document.getElementById('themeToggle');
 let adminTabId = null;
+
+/* ---------- theme handling ---------- */
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+}
+
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+}
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+});
 
 /* ---------- tiny helpers ---------- */
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
@@ -19,6 +37,9 @@ chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
         files: ['scrape_courses.js']
     });
 });
+
+// Initialize theme
+initTheme();
 
 /* ---------- receive data / progress ---------- */
 chrome.runtime.onMessage.addListener((msg) => {
